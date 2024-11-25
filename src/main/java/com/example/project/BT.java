@@ -117,11 +117,11 @@ public class BT<T> {
 	public static<T> int countLeafs(BT<T> bt ,T e) {
 		if(bt.empty())
 			return 0;
-		bt.find(Relative.root);
+		bt.find(Relative.Root);
 		return recCountLeafs(bt);
 	}
 
-}
+
 private static <T> int recCountLeafs (BT<T> bt ) {
 	if (bt.isLeaf())
 		return 1; 
@@ -139,6 +139,7 @@ private static <T> int recCountLeafs (BT<T> bt ) {
 	
 	}
 }
+
 }
 
 
