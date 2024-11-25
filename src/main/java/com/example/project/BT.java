@@ -98,8 +98,48 @@ public class BT<T> {
 	public boolean isLeaf() {
 		return current.left == null && current.right == null;
 	}
-	public int countLeaves() {
-		throw new UnsupportedOperationException("Not supported yet.");
+	public int countLeafs() {
+		return CountLeafsNodeRec(root);
+		
 		// Write the method countLeafs that should return the number of leaf nodes in the tree. A leaf node is a node that has no children.
 	}
+
+	private static <T> int CountLeafsNodeRec(BTNode<T> r) {
+
+		if(r == null)
+			return 0;
+		if(r.left == null && r.right == null)
+			return 1;
+		return CountLeafsNodeRec(r.left) + CountLeafsNodeRec(r.right);
+
 }
+
+	public static<T> int countLeafs(BT<T> bt ,T e) {
+		if(bt.empty())
+			return 0;
+		bt.find(Relative.root);
+		return recCountLeafs(bt);
+	}
+
+}
+private static <T> int recCountLeafs (BT<T> bt ) {
+	if (bt.isLeaf())
+		return 1; 
+	else { 
+	      int nb = 0;
+	      if(bt.find(Relative.LeftChild)){
+		   nb += recCountLeafs (bt);
+		   bt.find (Relative.Parent);
+		}
+	     if (bt.find(Relative.RightChild )){ 
+		     nb += recCountLeafs ( bt ) ;
+		     bt.find (Relative.Parent);
+	     }
+		return nb ;
+	
+	}
+}
+}
+
+
+	
